@@ -50,11 +50,16 @@ export class Game {
     ctx.font = "48px Arial";
     ctx.fillStyle = "red";
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", canvas.width / 2, canvas.height/2);
+    ctx.fillText("Game Over", canvas.width / 2, canvas.height / 2);
     ctx.font = "30px Proxima Nova";
     ctx.fillStyle = "red";
     ctx.textAlign = "center";
-    ctx.fillText("Press Enter to Restart", canvas.width/2 , canvas.height/2 +50);
+    ctx.fillText(
+      "Press Enter to Restart",
+      canvas.width / 2,
+      canvas.height / 2 + 50
+    );
+    requestAnimationFrame(this.drawGameOver.bind(this));
   }
 
   update() {
@@ -75,8 +80,8 @@ export class Game {
       return;
     }
 
-    if (this.player.posY > canvas.height - 60) {
-      this.player.posY = canvas.height - 60;
+    if (this.player.posY > canvas.height - this.player.height) {
+      this.player.posY = canvas.height - this.player.width;
       this.player.isJumping = false;
       this.player.jump();
     }
@@ -109,7 +114,7 @@ export class Game {
     }
 
     ctx.drawImage(this.backgroundImg, 0, 0, canvas.width, canvas.height);
-    if (this.player.posX + 60 < 0) this.player.posX = canvas.width;
+    if (this.player.posX + this.player.width < 0) this.player.posX = canvas.width;
     if (this.player.posX > canvas.width) this.player.posX = -60;
 
     this.score.draw();
@@ -122,6 +127,21 @@ export class Game {
   }
 
   start() {
+    window.addEventListener("keydown", (event) => {
+      if (this.isGameOver) return;
+  
+      switch (event.key) {
+        case "ArrowLeft":
+          this.player.moveLeft();
+          break;
+        case "ArrowRight":
+          this.player.moveRight();
+          break;
+        case " ":
+          this.player.jump();
+          break;
+      }
+    });
     this.createInitialPlatforms(6, canvas.height);
     this.player.doodlerImg.onload = () => {
       console.log("loaded");

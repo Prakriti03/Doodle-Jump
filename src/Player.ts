@@ -36,11 +36,11 @@ export class Player {
     if (this.posX + this.width < 0) { 
       this.posX = CANVAS_DIMENSIONS.CANVAS_WIDTH; 
     }
-    this.posX -= 10;
+    this.posX -= 5;
   }
 
   moveRight() {
-    this.posX += 10;
+    this.posX += 5;
     if (this.posX > CANVAS_DIMENSIONS.CANVAS_WIDTH) { 
       this.posX = -this.width; 
     }
