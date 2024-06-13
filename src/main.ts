@@ -11,7 +11,7 @@ canvas.width = 400;
 
 startButton.addEventListener("click", () => {
   startScreen.style.display = "none";
-  canvas.style.display = "block";
+  canvas.style.display = "flex";
   
   const game = new Game();
   game.start();

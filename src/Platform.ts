@@ -13,7 +13,7 @@ export class Platform {
     this.height = 15;
     this.width = 60;
     this.platformImg = new Image();
-    this.platformImg.src = '/platform.png';
+    this.platformImg.src = 'platform.png';
   }
 
   draw() {

@@ -17,7 +17,7 @@ export class Game {
     this.isGameOver = false;
     this.threshold = canvas.height / 2;
     this.backgroundImg = new Image();
-    this.backgroundImg.src = "/bg.png";
+    this.backgroundImg.src = "bg.png";
     this.score = new Score(ctx);
   }
 
@@ -33,10 +33,10 @@ export class Game {
   checkCollision() {
     for (let platform of this.platforms) {
       if (
-        this.player.posY + this.player.height >= platform.y && 
-        this.player.posY + this.player.height <= platform.y + platform.height && 
-        this.player.posX + this.player.width > platform.x && 
-        this.player.posX < platform.x + platform.width 
+        this.player.posY + this.player.height >= platform.y &&
+        this.player.posY + this.player.height <= platform.y + platform.height &&
+        this.player.posX + this.player.width > platform.x &&
+        this.player.posX < platform.x + platform.width
       ) {
         this.player.hasJumpedOnce = true;
         return platform;
@@ -50,7 +50,11 @@ export class Game {
     ctx.font = "48px Arial";
     ctx.fillStyle = "red";
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Game Over", canvas.width / 2, canvas.height/2);
+    ctx.font = "30px Proxima Nova";
+    ctx.fillStyle = "red";
+    ctx.textAlign = "center";
+    ctx.fillText("Press Enter to Restart", canvas.width/2 , canvas.height/2 +50);
   }
 
   update() {
@@ -72,19 +76,19 @@ export class Game {
     }
 
     if (this.player.posY > canvas.height - 60) {
-      this.player.posY = canvas.height - 60; 
+      this.player.posY = canvas.height - 60;
       this.player.isJumping = false;
       this.player.jump();
     }
-    
+
     if (this.player.posY < this.threshold) {
       let offset = this.threshold - this.player.posY;
       this.player.posY = this.threshold;
       this.platforms.forEach((platform) => {
-        platform.y += offset; 
+        platform.y += offset;
       });
       const previousPlatformCount = this.platforms.length;
-      
+
       this.platforms = this.platforms.filter(
         (platform) => platform.y < canvas.height
       );
@@ -104,7 +108,6 @@ export class Game {
       }
     }
 
-
     ctx.drawImage(this.backgroundImg, 0, 0, canvas.width, canvas.height);
     if (this.player.posX + 60 < 0) this.player.posX = canvas.width;
     if (this.player.posX > canvas.width) this.player.posX = -60;
@@ -121,6 +124,7 @@ export class Game {
   start() {
     this.createInitialPlatforms(6, canvas.height);
     this.player.doodlerImg.onload = () => {
+      console.log("loaded");
       this.backgroundImg.onload = () => {
         this.update();
       };

@@ -23,7 +23,7 @@ export class Player {
     this.isJumping = false;
     this.hasJumpedOnce = false;
     this.doodlerImg = new Image();
-    this.doodlerImg.src = "/blueR.png";
+    this.doodlerImg.src = "blueR.png";
     this.width = 60;
     this.height = 60;
   }
