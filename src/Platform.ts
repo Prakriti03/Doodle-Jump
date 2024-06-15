@@ -1,4 +1,6 @@
-import { ctx, canvas } from './main';
+import { ctx } from './main';
+import { getRandomInt } from './utils';
+import { CANVAS_DIMENSIONS, PLAYER_WIDTH } from './constants';
 
 export class Platform {
   x: number;
@@ -22,6 +24,6 @@ export class Platform {
 }
 
 export function createRandomPlatform(y: number) {
-  const x = Math.floor(Math.random() * (canvas.width - 60));
+  const x = getRandomInt(PLAYER_WIDTH*2,CANVAS_DIMENSIONS.CANVAS_WIDTH-PLAYER_WIDTH*2);
   return new Platform(x, y);
 }

@@ -10,17 +10,19 @@ const startButton = document.getElementById("start-button")!;
 canvas.height = CANVAS_DIMENSIONS.CANVAS_HEIGHT;
 canvas.width = CANVAS_DIMENSIONS.CANVAS_WIDTH;
 
+
 startButton.addEventListener("click", () => {
   startScreen.style.display = "none";
   canvas.style.display = "flex";
 
   const game = new Game();
+  console.log(game);
   game.start();
-
 });
 window.addEventListener("keydown", (event) => {
-  const game = new Game();
+  // const game = new Game();
   if (event.key === "Enter") {
+    const game = new Game();
     game.start();
   }
 });

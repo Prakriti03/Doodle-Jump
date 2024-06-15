@@ -20,7 +20,7 @@ export class Score {
     this.ctx.font = "20px Proxima Nova";
     let x = 20,
       y = 30;
-    console.log({ x, y });
+    // console.log({ x, y });
     this.ctx.fillText(`Score: ${this.score}`, x, y);
     //   this.ctx.fillStyle = "white";
     //   this.ctx.font = "22px Arial"

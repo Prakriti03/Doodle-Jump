@@ -103,7 +103,7 @@ export class Game {
         this.score.increment();
       }
 
-      while (this.platforms.length < 6) {
+      while (this.platforms.length < 8) {
         let newY =
           this.platforms.length > 0
             ? this.platforms[this.platforms.length - 1].y -
@@ -142,7 +142,7 @@ export class Game {
           break;
       }
     });
-    this.createInitialPlatforms(6, canvas.height);
+    this.createInitialPlatforms(8, canvas.height);
     this.player.doodlerImg.onload = () => {
       console.log("loaded");
       this.backgroundImg.onload = () => {
